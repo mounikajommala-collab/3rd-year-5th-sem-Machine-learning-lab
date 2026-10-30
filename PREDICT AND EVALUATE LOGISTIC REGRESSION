@@ -1,0 +1,22 @@
+lr_pred = lr_model.predict(X_test_tfidf)
+
+lr_accuracy = accuracy_score(y_test, lr_pred)
+
+print("\nLOGISTIC REGRESSION RESULTS")
+print("---------------------------")
+print("Accuracy:", round(lr_accuracy * 100, 2), "%")
+
+print("\nClassification Report:")
+print(
+    classification_report(
+        y_test,
+        lr_pred,
+        labels=[0, 1],
+        target_names=["Fake News", "True News"],
+        zero_division=0
+    )
+)
+
+lr_cm = confusion_matrix(y_test, lr_pred, labels=[0, 1])
+print("Confusion Matrix:")
+print(lr_cm)
